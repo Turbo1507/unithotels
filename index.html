@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>UNIT. Hotels &amp; Management: hotel and villa management in Bali</title>
+<meta name="description" content="Professional hospitality management and premium service in Bali. Operations, revenue management, distribution and 24/7 guest service for your property.">
+<link rel="preload" href="assets/fonts/hn-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/hn-roman.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Helvetica Neue';src:url(assets/fonts/hn-roman.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Helvetica Neue';src:url(assets/fonts/hn-medium.woff2) format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Helvetica Neue';src:url(assets/fonts/hn-bold.woff2) format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --blue:#0433ff;
+  --blue-tint:#eef1ff;
+  --ink:#141414;
+  --ink-2:#5c5c5c;
+  --bg:#f4f4f4;
+  --line:#e6e6e6;
+  --white:#fff;
+  --gutter:clamp(16px,4vw,56px);
+  --container:min(1600px,100% - 2*var(--gutter));
+  --section:120px;
+  --r-card:24px;
+  --vh:1vh;
+}
+@supports (height:1svh){:root{--vh:1svh}}
+@media (max-width:767px){:root{--section:64px;--r-card:16px}}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+i,em{font-style:normal}
+.u5{font-weight:500}
+.nw{white-space:nowrap}
+.container{width:var(--container);margin-inline:auto}
+
+/* шапка */
+.hdr{position:absolute;inset:0 0 auto;z-index:5;color:var(--white)}
+.hdr .container{display:flex;align-items:center;justify-content:space-between;height:80px;gap:24px}
+.wordmark{font-size:18px;font-weight:400;letter-spacing:0;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:32px;font-size:15px}
+.nav a{opacity:1;transition:color .2s}
+.nav a:hover{color:#c9d3ff}
+.lang{display:flex;gap:4px;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:4px}
+.lang button{font:inherit;font-size:13px;font-weight:500;color:inherit;background:none;border:0;border-radius:999px;padding:4px 12px;cursor:pointer;transition:background .2s,color .2s}
+.lang button[aria-pressed="true"]{background:var(--white);color:var(--ink)}
+@media (max-width:767px){
+  .hdr .container{height:64px}
+  .nav a{display:none}
+  .wordmark{font-size:16px}
+}
+
+/* хиро */
+.hero{position:relative;min-height:max(640px,calc(var(--vh)*100));display:flex;align-items:flex-end;color:var(--white);background:#1d2a4a}
+.hero picture,.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,12,40,.45) 0%,rgba(6,12,40,0) 28%,rgba(6,12,40,0) 40%,rgba(6,12,40,.72) 100%)}
+.hero .container{position:relative;z-index:1;padding-bottom:80px}
+.hero h1{font-size:clamp(40px,6.4vw,104px);line-height:1;font-weight:500;letter-spacing:-.02em;max-width:14ch}
+.hero p{margin-top:24px;font-size:clamp(16px,1.35vw,20px);line-height:1.45;max-width:1100px}
+.btns{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:56px;padding:0 32px;border-radius:999px;font-size:16px;font-weight:500;transition:background .2s,color .2s,border-color .2s;white-space:nowrap}
+.btn--primary{background:var(--blue);color:var(--white)}
+.btn--primary:hover{background:#2d55ff}
+.btn--ghost{border:1px solid rgba(255,255,255,.6);color:var(--white)}
+.btn--ghost:hover{background:var(--white);color:var(--ink)}
+@media (max-width:767px){
+  .hero .container{padding-bottom:40px}
+  .hero p{margin-top:16px}
+  .btns{margin-top:32px;flex-direction:column;gap:8px}
+  .btn{width:100%}
+}
+
+/* секции */
+.section{padding-block:var(--section)}
+.h2{font-size:clamp(32px,3.6vw,56px);line-height:1.08;font-weight:500;letter-spacing:-.015em;max-width:20ch}
+.lead{margin-top:16px;font-size:clamp(16px,1.25vw,19px);color:var(--ink-2);max-width:760px}
+.section-head{margin-bottom:56px}
+@media (max-width:767px){.section-head{margin-bottom:32px}}
+
+/* услуги: текст слева снизу, PNG справа обрезана рамкой карточки */
+.svc{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.svc-card{position:relative;overflow:clip;border-radius:var(--r-card);background:var(--blue-tint);min-height:440px;padding:48px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+.svc-card img{position:absolute;z-index:-1;pointer-events:none;user-select:none}
+.svc-text{max-width:min(46%,400px)}
+.svc-card h3{font-size:clamp(22px,1.9vw,30px);line-height:1.15;font-weight:500;letter-spacing:-.01em}
+.svc-card p{margin-top:16px;font-size:16px;line-height:1.5;color:var(--ink-2)}
+
+.svc-card--ops img{width:64%;right:-14%;top:64px}
+.svc-card--rev img{width:50%;right:-6%;bottom:-14%}
+.svc-card--mkt img{width:46%;right:-2%;bottom:-18%}
+.svc-card--guest img{width:62%;right:-14%;top:80px}
+
+@media (max-width:1023px){
+  .svc{grid-template-columns:1fr;gap:16px}
+  .svc-text{max-width:min(50%,440px)}
+}
+/* мобила: картинка в верхней зоне карточки, текст под ней, без наложения */
+@media (max-width:767px){
+  .svc-card{min-height:0;padding:256px 24px 32px}
+  .svc-text{max-width:none}
+  .svc-card img{width:auto;bottom:auto}
+  .svc-card--ops img{height:208px;right:-96px;top:40px}
+  .svc-card--rev img{height:256px;right:-16px;top:0}
+  .svc-card--mkt img{height:240px;right:16px;top:8px}
+  .svc-card--guest img{height:184px;right:-88px;top:48px}
+}
+
+/* направления */
+.dir{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.dir-card{position:relative;overflow:clip;border-radius:var(--r-card);min-height:480px;padding:48px;display:flex;flex-direction:column;justify-content:space-between;color:var(--white);isolation:isolate;transition:background .25s}
+.dir-card--mgmt{background:var(--blue)}
+.dir-card--mgmt:hover{background:#2d55ff}
+.dir-card--book{background:#1d2a4a}
+.dir-card--book img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.dir-card--book::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,12,40,.2) 0%,rgba(6,12,40,.7) 100%);transition:background .25s}
+.dir-card--book:hover::after{background:linear-gradient(180deg,rgba(4,51,255,.35) 0%,rgba(6,12,40,.75) 100%)}
+.dir-tag{font-size:14px;font-weight:400}
+.dir-card h3{font-size:clamp(32px,3.4vw,56px);line-height:1.05;font-weight:500;letter-spacing:-.015em}
+.dir-card p{margin-top:16px;font-size:16px;line-height:1.5;max-width:420px}
+.dir-cta{display:inline-flex;align-items:center;gap:8px;margin-top:40px;height:56px;padding:0 32px;border-radius:999px;background:var(--white);color:var(--ink);font-size:16px;font-weight:500;align-self:flex-start;white-space:nowrap}
+.dir-cta svg{transition:transform .2s}
+.dir-card:hover .dir-cta svg{transform:translateX(4px)}
+@media (max-width:1023px){.dir{grid-template-columns:1fr;gap:16px}}
+@media (max-width:767px){
+  .dir-card{min-height:400px;padding:32px 24px}
+  .dir-cta{margin-top:32px;width:100%;justify-content:center}
+}
+
+/* подвал */
+.ftr{border-top:1px solid var(--line);padding-block:40px;font-size:14px;color:var(--ink-2)}
+.ftr .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.ftr nav{display:flex;flex-wrap:wrap;gap:24px}
+.ftr a:hover{color:var(--blue)}
+.ftr .wordmark{color:var(--ink);font-size:16px}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="container">
+    <a class="wordmark" href="#top" aria-label="UNIT. Hotels &amp; Management"><i class="u5">UNIT.</i> Hotels &amp; Management</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#directions" data-i18n="nav_directions">Directions</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <picture>
+      <source media="(max-width:767px)" srcset="assets/img/hero-m.jpg">
+      <img src="assets/img/hero.jpg" alt="UNIT. Space City residence among rice fields in Bali" data-i18n-alt="hero_alt" fetchpriority="high" width="2400" height="1600">
+    </picture>
+    <div class="container">
+      <h1><i class="u5">UNIT.</i> Hotels &amp;&nbsp;Management</h1>
+      <p data-i18n="hero_sub">Professional hospitality management and premium service in&nbsp;Bali. We&nbsp;turn your property into a&nbsp;profitable, flawlessly run asset by&nbsp;taking on&nbsp;100% of&nbsp;operations.</p>
+      <div class="btns">
+        <a class="btn btn--primary" href="#directions" data-i18n="hero_cta1">Hand over your property</a>
+        <a class="btn btn--ghost" href="https://unit.now" data-i18n="hero_cta2">Find a stay in Bali</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2" data-i18n="svc_h2">A&nbsp;complete approach to&nbsp;management</h2>
+      </div>
+      <div class="svc">
+        <article class="svc-card svc-card--ops">
+          <img src="assets/img/svc-ops.png" alt="" width="900" height="464" loading="lazy">
+          <div class="svc-text">
+            <h3 data-i18n="s1_t">Operations management</h3>
+            <p data-i18n="s1_p">The full cycle, from hiring and training staff to&nbsp;daily quality control and housekeeping.</p>
+          </div>
+        </article>
+        <article class="svc-card svc-card--rev">
+          <img src="assets/img/svc-revenue.png" alt="" width="900" height="615" loading="lazy">
+          <div class="svc-text">
+            <h3>Revenue Management</h3>
+            <p data-i18n="s2_p">Dynamic pricing and strategies that maximise revenue (RevPAR), based on&nbsp;market analytics.</p>
+          </div>
+        </article>
+        <article class="svc-card svc-card--mkt">
+          <img src="assets/img/svc-marketing.png" alt="" width="600" height="572" loading="lazy">
+          <div class="svc-text">
+            <h3 data-i18n="s3_t">Marketing and distribution</h3>
+            <p data-i18n="s3_p">Promotion on&nbsp;international (Booking, Airbnb) and local platforms, reputation and review management.</p>
+          </div>
+        </article>
+        <article class="svc-card svc-card--guest">
+          <img src="assets/img/svc-guest.png" alt="" width="900" height="390" loading="lazy">
+          <div class="svc-text">
+            <h3 data-i18n="s4_t">Guest service 24/7</h3>
+            <p data-i18n="s4_p">Transfers, concierge and quick answers to&nbsp;any guest request for the highest ratings.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="directions" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2" data-i18n="dir_h2">Choose your direction</h2>
+      </div>
+      <div class="dir">
+        <!-- адрес сайта Unit Management ждём от Босса -->
+        <a class="dir-card dir-card--mgmt" href="#" data-todo="unit-management-url">
+          <span class="dir-tag" data-i18n="d1_tag">For property owners</span>
+          <div>
+            <h3 data-i18n="d1_t">Management company</h3>
+            <p data-i18n="d1_p">Hand your hotel or&nbsp;villa over to&nbsp;<i class="u5">UNIT.</i> Management and receive income without day-to-day&nbsp;tasks.</p>
+            <span class="dir-cta"><span data-i18n="d1_cta">Hand over your property</span> <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+        <a class="dir-card dir-card--book" href="https://unit.now">
+          <img src="assets/img/dir-book.jpg" alt="" width="1600" height="1066" loading="lazy">
+          <span class="dir-tag" data-i18n="d2_tag">For guests</span>
+          <div>
+            <h3 data-i18n="d2_t">Find and book</h3>
+            <p data-i18n="d2_p">Villas and apartments in&nbsp;Bali directly on&nbsp;the unit.now platform.</p>
+            <span class="dir-cta"><span data-i18n="d2_cta">Choose a stay</span> <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="container">
+    <span class="wordmark"><i class="u5">UNIT.</i> Hotels &amp; Management</span>
+    <nav aria-label="UNIT. ecosystem">
+      <a href="https://unit.now">unit.now</a>
+      <a href="https://unitdeveloper.com">unitdeveloper.com</a>
+      <span>© 2026 <i class="u5">UNIT.</i></span>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function setVh(){root.style.setProperty('--vh',innerHeight/100+'px')}
+  setVh();
+  var lastW=innerWidth;
+  addEventListener('resize',function(){if(innerWidth!==lastW){lastW=innerWidth;setVh()}});
+
+  var NB=' ';
+  var RU={
+    nav_services:'Услуги',
+    nav_directions:'Направления',
+    hero_alt:'Резиденция UNIT. Space City среди рисовых полей на Бали',
+    hero_sub:'Профессиональное управление гостиничным бизнесом и премиальный сервис на'+NB+'Бали. Мы'+NB+'превращаем вашу недвижимость в'+NB+'прибыльный, безупречно работающий актив, беря на'+NB+'себя 100% операционных задач.',
+    hero_cta1:'Передать объект в'+NB+'управление',
+    hero_cta2:'Найти жильё на'+NB+'Бали',
+    svc_h2:'Комплексный подход к'+NB+'управлению',
+    s1_t:'Операционное управление',
+    s1_p:'Полный цикл от'+NB+'найма и'+NB+'обучения персонала до'+NB+'ежедневного контроля качества и'+NB+'обслуживания номеров.',
+    s2_p:'Динамическое ценообразование и'+NB+'стратегии максимизации дохода (RevPAR) на'+NB+'основе аналитики рынка.',
+    s3_t:'Маркетинг и'+NB+'дистрибуция',
+    s3_p:'Продвижение объектов на'+NB+'международных (Booking, Airbnb) и'+NB+'локальных платформах, управление репутацией и'+NB+'отзывами.',
+    s4_t:'Гостевой сервис 24/7',
+    s4_p:'Организация трансферов, консьерж-сервис и'+NB+'решение любых вопросов гостей для высочайшего рейтинга.',
+    dir_h2:'Выберите ваше направление',
+    d1_tag:'Для владельцев недвижимости',
+    d1_t:'Управляющая компания',
+    d1_p:'Передайте отель или'+NB+'виллу в'+NB+'<i class="u5">UNIT.</i> Management и'+NB+'получайте доход без операционной рутины.',
+    d1_cta:'Передать объект',
+    d2_tag:'Для гостей',
+    d2_t:'Найти и'+NB+'забронировать',
+    d2_p:'Виллы и'+NB+'апартаменты на'+NB+'Бали напрямую на'+NB+'платформе unit.now.',
+    d2_cta:'Выбрать жильё'
+  };
+  var EN={};
+  document.querySelectorAll('[data-i18n]').forEach(function(el){EN[el.dataset.i18n]=el.innerHTML});
+  document.querySelectorAll('[data-i18n-alt]').forEach(function(el){EN[el.dataset.i18nAlt]=el.alt});
+
+  function apply(lang){
+    var d=lang==='ru'?RU:EN;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){var v=d[el.dataset.i18n];if(v!=null)el.innerHTML=v});
+    document.querySelectorAll('[data-i18n-alt]').forEach(function(el){var v=d[el.dataset.i18nAlt];if(v!=null)el.alt=v});
+    root.lang=lang;
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===lang)});
+  }
+  function getCookie(){var m=document.cookie.match(/(?:^|; )unit_lang=([^;]+)/);return m?m[1]:null}
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var l=b.dataset.lang;
+      document.cookie='unit_lang='+l+';path=/;max-age=31536000;samesite=lax';
+      apply(l);
+    });
+  });
+  var saved=getCookie();
+  if(saved==='ru')apply('ru');
+})();
+</script>
+</body>
+</html>
