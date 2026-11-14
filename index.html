@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>UNIT. Hotels &amp; Management: hotel and villa management in Bali</title>
 <meta name="description" content="Professional hospitality management and premium service in Bali. Operations, revenue management, distribution and 24/7 guest service for your property.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230433ff%27/%3E%3Ccircle cx=%2722%27 cy=%2722%27 r=%273%27 fill=%27%23fff%27/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/hn-medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/hn-roman.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -16,6 +17,7 @@
 :root{
   --blue:#0433ff;
   --blue-tint:#eef1ff;
+  --blue-hover:#2d55ff;
   --ink:#141414;
   --ink-2:#5c5c5c;
   --bg:#f4f4f4;
@@ -66,7 +68,7 @@ i,em{font-style:normal}
 .btns{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:56px;padding:0 32px;border-radius:999px;font-size:16px;font-weight:500;transition:background .2s,color .2s,border-color .2s;white-space:nowrap}
 .btn--primary{background:var(--blue);color:var(--white)}
-.btn--primary:hover{background:#2d55ff}
+.btn--primary:hover{background:var(--blue-hover)}
 .btn--ghost{border:1px solid rgba(255,255,255,.6);color:var(--white)}
 .btn--ghost:hover{background:var(--white);color:var(--ink)}
 @media (max-width:767px){
@@ -87,7 +89,7 @@ i,em{font-style:normal}
 .svc{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .svc-card{position:relative;overflow:clip;border-radius:var(--r-card);background:var(--blue-tint);min-height:440px;padding:48px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
 .svc-card img{position:absolute;z-index:-1;height:auto;pointer-events:none;user-select:none}
-.svc-text{max-width:min(46%,400px)}
+.svc-text{max-width:min(40%,400px)}
 .svc-card h3{font-size:clamp(22px,1.9vw,30px);line-height:1.15;font-weight:500;letter-spacing:-.01em}
 .svc-card p{margin-top:16px;font-size:16px;line-height:1.5;color:var(--ink-2)}
 
@@ -108,7 +110,7 @@ i,em{font-style:normal}
 @media (max-width:767px){
   .svc-card{min-height:0;padding:256px 24px 32px}
   .svc-text{max-width:none}
-  .svc-card img{width:auto;bottom:auto}
+  .svc-card img{width:auto;max-width:none;bottom:auto}
   .svc-card--ops img{height:208px;right:-96px;top:40px}
   .svc-card--rev img{height:256px;right:-16px;top:0}
   .svc-card--mkt img{height:240px;right:16px;top:8px}
@@ -119,7 +121,7 @@ i,em{font-style:normal}
 .dir{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .dir-card{position:relative;overflow:clip;border-radius:var(--r-card);min-height:480px;padding:48px;display:flex;flex-direction:column;justify-content:space-between;color:var(--white);isolation:isolate;transition:background .25s}
 .dir-card--mgmt{background:var(--blue)}
-.dir-card--mgmt:hover{background:#2d55ff}
+.dir-card--mgmt:hover{background:var(--blue-hover)}
 .dir-card--book{background:#1d2a4a}
 .dir-card--book img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .dir-card--book::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,12,40,.2) 0%,rgba(6,12,40,.7) 100%);transition:background .25s}
@@ -134,6 +136,15 @@ i,em{font-style:normal}
 @media (max-width:767px){
   .dir-card{min-height:400px;padding:32px 24px}
   .dir-cta{margin-top:32px;width:100%;justify-content:center}
+}
+
+.btn:focus-visible,.dir-card:focus-visible,.prj:focus-visible,.nav a:focus-visible,.wordmark:focus-visible,.lang button:focus-visible,.ftr a:focus-visible{outline:2px solid var(--focus,#0433ff);outline-offset:3px}
+.hero :focus-visible,.hdr :focus-visible,.dir-card--mgmt:focus-visible,.dir-card--book:focus-visible,.sub :focus-visible{--focus:#fff}
+
+@media (max-width:767px){
+  .lang button{min-height:40px;padding:0 14px}
+  .ftr a{display:inline-block;padding-block:12px}
+  .wordmark{padding-block:10px}
 }
 
 /* подвал */
@@ -297,7 +308,14 @@ i,em{font-style:normal}
     document.querySelectorAll('[data-i18n]').forEach(function(el){var v=d[el.dataset.i18n];if(v!=null)el.innerHTML=v});
     document.querySelectorAll('[data-i18n-alt]').forEach(function(el){var v=d[el.dataset.i18nAlt];if(v!=null)el.alt=v});
     root.lang=lang;
+    glue();
     document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===lang)});
+  }
+  // короткие предлоги и союзы не висят в конце строки: клеим к следующему слову
+  function glue(){
+    var re=root.lang==='ru'?/(^|[\s\u00a0(«])(в|и|к|с|о|у|а|я|на|по|от|до|за|из|не|но|для|без|над|под|при|про|об|во|со|же|ли) /gi:/(^|[\s\u00a0(])(a|an|the|to) /gi;
+    var tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){return /SCRIPT|STYLE/.test(n.parentNode.nodeName)?2:1}});
+    for(var n;(n=tw.nextNode());){var v=n.data.replace(re,'$1$2\u00a0').replace(re,'$1$2\u00a0');if(v!==n.data)n.data=v}
   }
   function getCookie(){var m=document.cookie.match(/(?:^|; )unit_lang=([^;]+)/);return m?m[1]:null}
   document.querySelectorAll('.lang button').forEach(function(b){
@@ -309,6 +327,7 @@ i,em{font-style:normal}
   });
   var saved=getCookie();
   if(saved==='ru')apply('ru');
+  else glue();
 })();
 </script>
 </body>
