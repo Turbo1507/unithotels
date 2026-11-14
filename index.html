@@ -86,18 +86,22 @@ i,em{font-style:normal}
 /* услуги: текст слева снизу, PNG справа обрезана рамкой карточки */
 .svc{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .svc-card{position:relative;overflow:clip;border-radius:var(--r-card);background:var(--blue-tint);min-height:440px;padding:48px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
-.svc-card img{position:absolute;z-index:-1;pointer-events:none;user-select:none}
+.svc-card img{position:absolute;z-index:-1;height:auto;pointer-events:none;user-select:none}
 .svc-text{max-width:min(46%,400px)}
 .svc-card h3{font-size:clamp(22px,1.9vw,30px);line-height:1.15;font-weight:500;letter-spacing:-.01em}
 .svc-card p{margin-top:16px;font-size:16px;line-height:1.5;color:var(--ink-2)}
 
-.svc-card--ops img{width:64%;right:-14%;top:64px}
-.svc-card--rev img{width:50%;right:-6%;bottom:-14%}
-.svc-card--mkt img{width:46%;right:-2%;bottom:-18%}
-.svc-card--guest img{width:62%;right:-14%;top:80px}
+.svc-card--ops img{width:76%;right:-20%;bottom:-4%}
+.svc-card--rev img{width:66%;right:-12%;bottom:-12%}
+.svc-card--mkt img{width:50%;right:-2%;bottom:-16%}
+.svc-card--guest img{width:72%;right:-18%;bottom:-6%}
 
-@media (max-width:1023px){
+@media (max-width:1199px){
   .svc{grid-template-columns:1fr;gap:16px}
+  .svc-card--ops img{width:58%;right:-10%}
+  .svc-card--rev img{width:48%;right:-6%}
+  .svc-card--mkt img{width:36%;right:2%}
+  .svc-card--guest img{width:54%;right:-8%}
   .svc-text{max-width:min(50%,440px)}
 }
 /* мобила: картинка в верхней зоне карточки, текст под ней, без наложения */
@@ -179,7 +183,7 @@ i,em{font-style:normal}
       </div>
       <div class="svc">
         <article class="svc-card svc-card--ops">
-          <img src="assets/img/svc-ops.png" alt="" width="900" height="464" loading="lazy">
+          <img src="assets/img/svc-ops.png" alt="" width="900" height="403" loading="lazy">
           <div class="svc-text">
             <h3 data-i18n="s1_t">Operations management</h3>
             <p data-i18n="s1_p">The full cycle, from hiring and training staff to&nbsp;daily quality control and housekeeping.</p>
@@ -200,7 +204,7 @@ i,em{font-style:normal}
           </div>
         </article>
         <article class="svc-card svc-card--guest">
-          <img src="assets/img/svc-guest.png" alt="" width="900" height="390" loading="lazy">
+          <img src="assets/img/svc-guest.png" alt="" width="900" height="433" loading="lazy">
           <div class="svc-text">
             <h3 data-i18n="s4_t">Guest service 24/7</h3>
             <p data-i18n="s4_p">Transfers, concierge and quick answers to&nbsp;any guest request for the highest ratings.</p>
