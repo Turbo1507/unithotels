@@ -26,7 +26,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230433ff%27/%3E%3Ccircle cx=%2722%27 cy=%2722%27 r=%273%27 fill=%27%23fff%27/%3E%3C/svg%3E">
 <link rel="preload" href="../assets/fonts/hn-medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/hn-roman.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/site.css?v=mwl1ssw9">
+<link rel="stylesheet" href="../assets/site.css?v=mwl21oxi">
 
 </head>
 <body>
@@ -47,11 +47,20 @@
 
 <main id="top">
   <section class="hero">
-    <picture>
-      <source media="(max-width:599px)" srcset="../assets/img/hero-m.webp" type="image/webp">
-      <source srcset="../assets/img/hero.webp" type="image/webp">
-      <img src="../assets/img/hero.jpg" alt="Résidence UNIT. Space City au milieu des rizières à Bali" fetchpriority="high" width="2400" height="1600">
-    </picture>
+    <div class="hero-media">
+      <div class="hero-slide on"><picture>
+        <source media="(max-width:599px)" srcset="../assets/img/hero-m.webp" type="image/webp">
+        <img src="../assets/img/hero.webp" alt="Résidence UNIT. Space City au milieu des rizières à Bali" fetchpriority="high" width="2200" height="1467">
+      </picture></div>
+      <div class="hero-slide"><picture>
+        <source media="(max-width:599px)" srcset="../assets/img/hero2-m.webp" type="image/webp">
+        <img src="../assets/img/hero2.webp" alt="Terrasse face aux rizières" loading="lazy" width="2200" height="1467">
+      </picture></div>
+      <div class="hero-slide"><picture>
+        <source media="(max-width:599px)" srcset="../assets/img/hero3-m.webp" type="image/webp">
+        <img src="../assets/img/hero3.webp" alt="UNIT. Space City au crépuscule" loading="lazy" width="2200" height="1467">
+      </picture></div>
+    </div>
     <div class="container hero-in">
       <h1 class="t"><i class="u5">UNIT.</i> Hotels &amp; Management</h1>
       <p class="t hero-sub">Gestion hôtelière professionnelle et service haut de gamme à Bali. Nous faisons de votre bien un actif rentable et parfaitement géré en prenant en charge 100 % des opérations</p>
@@ -60,6 +69,8 @@
         <a class="btn btn-ghost" href="https://unit.now">Trouver un logement à Bali</a>
       </div>
     </div>
+    <div class="hero-caps"><p class="hero-cap on">Résidence <i class="u5">UNIT.</i> Space City, Bali</p><p class="hero-cap" aria-hidden="true">Terrasse face aux rizières</p><p class="hero-cap" aria-hidden="true"><i class="u5">UNIT.</i> Space City au crépuscule</p></div>
+    <div class="hero-dots" role="group" aria-label="Photos"></div>
   </section>
 
   <section class="sec svc-sec" id="services">
@@ -139,6 +150,6 @@
     </nav>
   </div>
 </footer>
-<script src="../assets/site.js?v=mwl1ssw9" defer></script>
+<script src="../assets/site.js?v=mwl21oxi" defer></script>
 </body>
 </html>

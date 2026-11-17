@@ -33,3 +33,24 @@
     a.href = a.href.split('#')[0] + location.hash;
   });
 })();
+
+// галерея первого экрана: смена раз в 5,5 с, точки переключают, пауза при скрытой вкладке и при «меньше движения»
+(function () {
+  var slides = [].slice.call(document.querySelectorAll('.hero-slide'));
+  var caps = [].slice.call(document.querySelectorAll('.hero-cap'));
+  var dots = document.querySelector('.hero-dots');
+  if (slides.length < 2 || !dots) return;
+  var label = dots.getAttribute('aria-label') || '';
+  dots.innerHTML = slides.map(function (_, i) { return '<button type="button" data-i="' + i + '" aria-label="' + label + ' ' + (i + 1) + ' / ' + slides.length + '"' + (i ? '' : ' aria-current="true"') + '></button>'; }).join('');
+  var idx = 0, timer, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(i) {
+    idx = i;
+    slides.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+    caps.forEach(function (c, k) { c.classList.toggle('on', k === i); if (k === i) c.removeAttribute('aria-hidden'); else c.setAttribute('aria-hidden', 'true'); });
+    [].forEach.call(dots.children, function (b, k) { if (k === i) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+  }
+  function run() { clearInterval(timer); if (still || document.hidden) return; timer = setInterval(function () { show((idx + 1) % slides.length); }, 5500); }
+  dots.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { show(+b.dataset.i); run(); } });
+  document.addEventListener('visibilitychange', run);
+  run();
+})();
