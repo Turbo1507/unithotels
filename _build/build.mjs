@@ -1,5 +1,6 @@
 // Сборка сайта: корень на английском, остальные языки в /<код>/, текст вписан в HTML.
-// У каждой версии свои canonical и hreflang, title и description английские.
+// У каждой версии свои canonical и hreflang, title и description английские (правило Босса 23.10).
+// На github.io noindex; при сборке с доменом (node _build/build.mjs https://домен/) индексация открывается и пишется robots.txt.
 // Запуск из site/:  node _build/build.mjs [https://unithotels.com/]
 import fs from 'fs';
 import path from 'path';
@@ -7,6 +8,10 @@ import { fileURLToPath } from 'url';
 import { LANGS, NATIVE, LOCALE, T, glue } from './i18n.mjs';
 import { CAPS, GAL } from './caps.mjs';
 
+// выбор языка по куки: отдельным файлом, чтобы CSP обходилась без inline-скриптов
+const REDIR = `(function(){var L=/^(${LANGS.join('|')})$/;if(/bot|crawl|spider|slurp|lighthouse|headless|preview/i.test(navigator.userAgent))return;var w=(location.search.match(/[?&]lang=([a-z]{2})/)||[])[1];if(!w){var m=document.cookie.match(/(?:^|;\\s*)unit_lang=([a-z]{2})/);w=m&&m[1]}if(!w||w==='en'||!L.test(w))return;location.replace(location.pathname.replace(/[^/]*$/,'')+w+'/'+location.hash)})();`;
+const INDEX = !/github\.io/.test(process.argv[2] || 'https://turbo1507.github.io/');
+const OG_W = 1200, OG_H = 630; // размер hero.jpg для превью ссылок
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = (process.argv[2] || 'https://turbo1507.github.io/unithotels/').replace(/\/?$/, '/');
 const TITLE = 'UNIT. Hotels & Management: hotel and villa management in Bali';
@@ -29,23 +34,33 @@ function page(l) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="${INDEX ? 'index, follow, max-image-preview:large' : 'noindex, nofollow'}">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#0433ff">
 <title>${attr(TITLE)}</title>
 <meta name="description" content="${attr(DESC)}">
 <link rel="canonical" href="${url(l)}">
 ${LANGS.map(x => `<link rel="alternate" hreflang="${x}" href="${url(x)}">`).join('\n')}
 <link rel="alternate" hreflang="x-default" href="${url('en')}">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="UNIT. Hotels &amp; Management">
 <meta property="og:url" content="${url(l)}">
 <meta property="og:title" content="UNIT. Hotels &amp; Management">
 <meta property="og:description" content="${attr(DESC)}">
-<meta property="og:image" content="${SITE}assets/img/hero.jpg">
+<meta property="og:image" content="${SITE}assets/img/og.jpg">
+<meta property="og:image:width" content="${OG_W}">
+<meta property="og:image:height" content="${OG_H}">
+<meta property="og:image:alt" content="${attr(plain(T.en.hero_alt))}">
 <meta property="og:locale" content="${LOCALE[l]}">
+${LANGS.filter(x => x !== l).map(x => `<meta property="og:locale:alternate" content="${LOCALE[x]}">`).join('\n')}
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': [{ '@type': 'WebSite', name: "UNIT. Hotels & Management", url: SITE, inLanguage: LANGS }, { '@type': 'Organization', name: 'UNIT. Hotels & Management', url: SITE, parentOrganization: { '@type': 'Organization', name: 'UNIT.', url: 'https://unitdeveloper.com' }, areaServed: 'Bali, Indonesia', contactPoint: { '@type': 'ContactPoint', telephone: '+62 813 3917 731', contactType: 'customer service', availableLanguage: ['en', 'ru', 'id'] } }] }).replace(/</g, '\\u003c')}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230433ff%27/%3E%3Ccircle cx=%2722%27 cy=%2722%27 r=%273%27 fill=%27%23fff%27/%3E%3C/svg%3E">
 <link rel="preload" href="${R}assets/fonts/hn-medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/fonts/hn-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${R}assets/site.css?v=${V}">
-${l === 'en' ? `<script>(function(){var L=/^(${LANGS.join('|')})$/;if(/bot|crawl|spider|slurp|lighthouse|headless|preview/i.test(navigator.userAgent))return;var w=(location.search.match(/[?&]lang=([a-z]{2})/)||[])[1];if(!w){var m=document.cookie.match(/(?:^|;\\s*)unit_lang=([a-z]{2})/);w=m&&m[1]}if(!w||w==='en'||!L.test(w))return;location.replace(location.pathname.replace(/[^/]*$/,'')+w+'/'+location.hash)})();</script>` : ''}
+${l === 'en' ? `<script src="assets/redir.js?v=${V}"></script>` : ''}
 </head>
 <body>
 <header class="hdr">
@@ -109,7 +124,7 @@ ${svc.map(([k, s], i) => `        <article class="svc-card svc-${k} svc-${i + 1}
           <div class="dir-body">
             <h3 class="t">${d.d1_t}</h3>
             <p class="t">${d.d1_p}</p>
-            <a class="btn btn-white" href="https://wa.me/628133917731" data-todo="unit-management-url" target="_blank" rel="noopener">${d.cta}</a>
+            <a class="btn btn-white" href="https://wa.me/628133917731" data-todo="unit-management-url" target="_blank" rel="noopener noreferrer">${d.cta}</a>
           </div>
         </article>
         <article class="dir-card dir-book">
@@ -153,4 +168,7 @@ ${LANGS.map(l => `  <url><loc>${url(l)}</loc>${LANGS.map(x => `<xhtml:link rel="
 </urlset>
 `;
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sm);
+fs.writeFileSync(path.join(ROOT, 'assets', 'redir.js'), REDIR + '\n');
+if (INDEX) fs.writeFileSync(path.join(ROOT, 'robots.txt'), 'User-agent: *\nAllow: /\n\nSitemap: ' + SITE + 'sitemap.xml\n');
+else if (fs.existsSync(path.join(ROOT, 'robots.txt'))) fs.rmSync(path.join(ROOT, 'robots.txt'));
 console.log('build:', LANGS.join(' '), SITE);

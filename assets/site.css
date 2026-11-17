@@ -14,6 +14,7 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:clip}
+html{scroll-padding-top:64px}
 body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased;line-height:1.25;text-rendering:optimizeLegibility}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -35,7 +36,8 @@ ul{list-style:none}
 .btn-sm{height:44px;padding:0 16px;border-radius:10px;font-size:14px;line-height:18px;background:var(--blue);color:var(--white)}
 
 /* шапка как у UNIT.FURNITURE: прозрачная поверх первого экрана */
-.hdr{position:absolute;inset:0 0 auto;z-index:20;color:var(--white)}
+.hdr{position:fixed;inset:0 0 auto;z-index:20;color:var(--ink);background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:background-color .3s,border-color .3s,color .3s}
+.hdr.is-over{color:var(--white);background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border-color:transparent}
 .hdr-in{display:flex;align-items:center;height:64px}
 .wordmark{font-size:20px;line-height:24px;letter-spacing:-.02em;white-space:nowrap;margin-right:auto}
 .nav{display:flex;gap:32px;margin-right:24px;font-size:14px;font-weight:500;line-height:18px}
@@ -157,7 +159,7 @@ ul{list-style:none}
 
 /* фокус с клавиатуры */
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.hdr :focus-visible,.hero :focus-visible,.dir-card:focus-visible{outline-color:var(--white)}
+.hdr.is-over :focus-visible,.hero :focus-visible,.dir-card:focus-visible{outline-color:var(--white)}
 .dir-card:focus-visible{outline-offset:-6px}
 
 /* состояния кнопок по логике UNIT.FURNITURE: синяя при наведении становится контурной (рамка и текст синие),

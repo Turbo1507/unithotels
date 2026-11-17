@@ -54,3 +54,11 @@
   document.addEventListener('visibilitychange', run);
   run();
 })();
+
+// шапка липкая, как у фурнитуры: над первым экраном прозрачная, дальше светлая подложка
+(function () {
+  var h = document.querySelector('.hdr'), hero = document.querySelector('.hero');
+  if (!h || !hero) return;
+  function upd() { h.classList.toggle('is-over', hero.getBoundingClientRect().bottom > h.offsetHeight); }
+  addEventListener('scroll', upd, { passive: true }); upd();
+})();
