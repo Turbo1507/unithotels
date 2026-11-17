@@ -1,4 +1,6 @@
 (function () {
+  // :active на iOS срабатывает только при слушателе касаний
+  document.addEventListener('touchstart', function () {}, { passive: true });
   var root = document.documentElement;
   // высота экрана в px один раз и только при смене ширины: в Telegram и Safari страница не дёргается
   function setVh() { root.style.setProperty('--vh', innerHeight / 100 + 'px'); }
