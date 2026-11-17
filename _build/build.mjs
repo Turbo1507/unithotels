@@ -82,7 +82,7 @@ ${l === 'en' ? `<script>(function(){var L=/^(${LANGS.join('|')})$/;if(/bot|crawl
     <div class="container">
       <h2 class="t h2">${d.svc_h2}</h2>
       <div class="svc">
-${svc.map(([k, s], i) => `        <article class="svc-card svc-${k}" style="--bg-d:url(${R}assets/img/bg-d${i + 1}.webp);--bg-m:url(${R}assets/img/bg-m${i + 1}.webp)">
+${svc.map(([k, s], i) => `        <article class="svc-card svc-${k} svc-${i + 1}">
           <div class="svc-pic"><picture>
             <source media="(max-width:599px)" srcset="${R}assets/img/svc-${k}-m.webp" width="${size[k][2]}" height="${size[k][3]}">
             <img src="${R}assets/img/svc-${k}.webp" alt="" width="${size[k][0]}" height="${size[k][1]}" loading="lazy">

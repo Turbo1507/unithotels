@@ -165,7 +165,7 @@ export const T = {
 // Короткие слова не висят в конце строки: клеим к следующему (RU/UK без «где/что/кто/это/как»)
 const KEEP = new Set(['где', 'что', 'кто', 'это', 'как', 'де', 'що', 'хто', 'як']);
 export function glue(s, l) {
-  const g = t => t.replace(/(^|[\s>(« ])([\p{L}\d]{1,3})\.? (?=[\p{L}\d(«])/gu, (m, a, w) => KEEP.has(w.toLowerCase()) ? m : m.slice(0, -1) + ' ');
+  const g = t => t.replace(/(^|[\s>(« ])([\p{L}\d]{1,3})\.? (?=[\p{L}\d(«<])/gu, (m, a, w) => KEEP.has(w.toLowerCase()) ? m : m.slice(0, -1) + ' ');
   s = g(g(s));
   s = s.replace(/(\d) (%|лет|років|years|ans|años|anni|jaar|yıl)/g, '$1 $2');
   if (l === 'fr') s = s.replace(/ ([:;?!»])/g, ' $1').replace(/« /g, '« ');
