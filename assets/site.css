@@ -85,10 +85,10 @@ ul{list-style:none}
 .svc-card p{--fs:16px;--lh:20px;--mt:24px;color:var(--ink-2);max-width:240px}
 .svc-pic{position:absolute;inset:0;z-index:-1;pointer-events:none;user-select:none;container-type:inline-size}
 .svc-pic img{position:absolute;bottom:24px;height:auto;max-width:none}
-.svc-ops .svc-pic img{width:min(445px,68.2cqw);right:max(-96px,-14.8cqw)}
-.svc-rev .svc-pic img{width:min(318px,48.7cqw);right:max(-17px,-2.6cqw)}
-.svc-mkt .svc-pic img{width:min(437px,67cqw);right:max(-58px,-9cqw)}
-.svc-guest .svc-pic img{width:min(466px,71.4cqw);right:max(-34px,-5.3cqw)}
+.svc-ops .svc-pic img{width:min(440px,67.5cqw);right:max(-40px,-6.1cqw)}
+.svc-rev .svc-pic img{width:min(288px,44.2cqw);right:max(-12px,-1.8cqw)}
+.svc-mkt .svc-pic img{width:min(443px,67.9cqw);right:max(-40px,-6.1cqw)}
+.svc-guest .svc-pic img{width:min(465px,71.3cqw);right:max(-24px,-3.7cqw)}
 /* телефон: предмет выглядывает над карточкой на 32, текст под ним */
 @media (max-width:599px){
   .svc-sec .h2{--mb:72px}
