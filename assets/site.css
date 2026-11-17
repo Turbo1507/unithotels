@@ -66,7 +66,7 @@ ul{list-style:none}
 .hero picture,.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 40%,rgba(0,0,0,.72) 100%)}
 .hero-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;padding-bottom:clamp(40px,26.67px + 3.704vw,80px)}
-.hero h1{--fs:clamp(40px,22.67px + 4.815vw,92px);--lh:var(--fs);font-weight:500;letter-spacing:-.02em;max-width:6.9em}
+.hero h1{--fs:clamp(40px,22.67px + 4.815vw,92px);--lh:calc(var(--fs)*.9);font-weight:500;letter-spacing:-.02em;max-width:6.9em}
 .hero-sub{--fs:clamp(16px,15px + .278vw,19px);--lh:clamp(20px,18.67px + .37vw,24px);--mt:clamp(24px,21.33px + .741vw,32px);max-width:992px}
 .btns{display:flex;flex-wrap:wrap;gap:16px;margin-top:clamp(32px,29.33px + .741vw,40px)}
 @media (max-width:599px){
@@ -119,12 +119,13 @@ ul{list-style:none}
 .dir-tag{--fs:14px;--lh:18px}
 .dir-body{display:flex;flex-direction:column;align-items:flex-start}
 .dir-card h3{--fs:clamp(32px,26.33px + 1.574vw,49px);--lh:clamp(34px,28.33px + 1.574vw,51px);font-weight:500;letter-spacing:-.015em}
-.dir-card p{--fs:16px;--lh:20px;--mt:16px;max-width:480px}
+.dir-card p{--fs:16px;--lh:20px;--mt:24px;max-width:480px}
+@media (min-width:1280px){.dir-card p{--mt:16px}}
 .dir-card .btn{margin-top:40px}
 @media (max-width:599px){
   .dir{gap:16px}
   .dir-card{min-height:400px;padding:32px 24px;border-radius:16px}
-  .dir-card .btn{margin-top:32px;width:100%}
+  .dir-card .btn{margin-top:24px;width:100%}
 }
 
 /* подвал */
