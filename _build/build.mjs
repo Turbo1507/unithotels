@@ -98,23 +98,24 @@ ${svc.map(([k, s], i) => `        <article class="svc-card svc-${k} svc-${i + 1}
     <div class="container">
       <h2 class="t h2">${d.dir_h2}</h2>
       <div class="dir">
-        <a class="dir-card dir-mgmt" href="#" data-todo="unit-management-url">
+        <article class="dir-card dir-mgmt">
+          <div class="flow" aria-hidden="true"><span class="flow-blobs"><i></i><i></i><i></i><i></i><i></i></span><span class="flow-grain"></span></div>
           <span class="t dir-tag">${d.d1_tag}</span>
           <div class="dir-body">
             <h3 class="t">${d.d1_t}</h3>
             <p class="t">${d.d1_p}</p>
-            <span class="btn btn-white">${d.cta}</span>
+            <a class="btn btn-white" href="https://wa.me/628133917731" data-todo="unit-management-url" target="_blank" rel="noopener">${d.cta}</a>
           </div>
-        </a>
-        <a class="dir-card dir-book" href="https://unit.now">
+        </article>
+        <article class="dir-card dir-book">
           <img src="${R}assets/img/dir-book.webp" alt="" width="1600" height="1067" loading="lazy">
           <span class="t dir-tag">${d.d2_tag}</span>
           <div class="dir-body">
             <h3 class="t">${d.d2_t}</h3>
             <p class="t">${d.d2_p}</p>
-            <span class="btn btn-white">${d.d2_cta}</span>
+            <a class="btn btn-white" href="https://unit.now">${d.d2_cta}</a>
           </div>
-        </a>
+        </article>
       </div>
     </div>
   </section>

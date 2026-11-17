@@ -82,17 +82,17 @@ ul{list-style:none}
 /* услуги: заголовок и текст слева сверху, предмет справа снизу; обрезать можно только правым краем */
 .svc{display:grid;gap:24px}
 @media (min-width:1200px){.svc{grid-template-columns:1fr 1fr}}
-.svc-card{position:relative;height:520px;padding:48px;border-radius:24px;overflow:clip;isolation:isolate;background:var(--grey) center/cover no-repeat}
+.svc-card{position:relative;height:448px;padding:40px;border-radius:24px;overflow:clip;isolation:isolate;background:var(--grey) center/cover no-repeat}
 /* подложки по классам, не через переменную: url() в var() Chrome считает от файла стилей, Safari от страницы */
 .svc-1{background-image:url(img/bg-d1.webp)}.svc-2{background-image:url(img/bg-d2.webp)}.svc-3{background-image:url(img/bg-d3.webp)}.svc-4{background-image:url(img/bg-d4.webp)}
 .svc-card h3{--fs:27px;--lh:31px;font-weight:500;letter-spacing:-.01em;max-width:240px}
 .svc-card p{--fs:16px;--lh:20px;--mt:24px;color:var(--ink-2);max-width:240px}
 .svc-pic{position:absolute;inset:0;z-index:-1;pointer-events:none;user-select:none;container-type:inline-size}
 .svc-pic img{position:absolute;bottom:24px;height:auto;max-width:none}
-.svc-ops .svc-pic img{width:min(517px,79.29cqw);right:max(-112px,-17.18cqw)}
-.svc-rev .svc-pic img{width:min(369px,56.6cqw);right:max(-20px,-3.07cqw)}
-.svc-mkt .svc-pic img{width:min(508px,77.91cqw);right:max(-68px,-10.43cqw)}
-.svc-guest .svc-pic img{width:min(541px,82.98cqw);right:max(-40px,-6.13cqw)}
+.svc-ops .svc-pic img{width:min(445px,68.2cqw);right:max(-96px,-14.8cqw)}
+.svc-rev .svc-pic img{width:min(318px,48.7cqw);right:max(-17px,-2.6cqw)}
+.svc-mkt .svc-pic img{width:min(437px,67cqw);right:max(-58px,-9cqw)}
+.svc-guest .svc-pic img{width:min(466px,71.4cqw);right:max(-34px,-5.3cqw)}
 /* телефон: предмет выглядывает над карточкой на 32, текст под ним */
 @media (max-width:599px){
   .svc-sec .h2{--mb:72px}
@@ -118,7 +118,18 @@ ul{list-style:none}
 .dir-book{background:#1d2a4a}
 .dir-book img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .5s}
 .dir-book::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.7) 100%)}
-@media (hover:hover){.dir-mgmt:hover{background:var(--blue-hover)}.dir-book:hover img{transform:scale(1.03)}}
+/* синяя карточка: живой фон как у подписки nuanu, но ещё слабее — пятна почти в тон синего, зерно тише */
+.flow{position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;overflow:hidden}
+.flow-blobs{position:absolute;inset:0}
+.flow-blobs i{position:absolute;border-radius:50%;aspect-ratio:1;filter:blur(clamp(32px,4vw,56px));will-change:transform;animation:flow-float 18s ease-in-out infinite alternate}
+.flow-blobs i:nth-child(1){width:70%;left:-22%;top:-60%;background:#2a8cf5;opacity:.45}
+.flow-blobs i:nth-child(2){width:60%;left:52%;top:-55%;background:#2e50ff;opacity:.7;animation-duration:23s;animation-delay:-6s}
+.flow-blobs i:nth-child(3){width:75%;left:45%;top:20%;background:#0a2fe0;opacity:.7;animation-duration:26s;animation-delay:-11s}
+.flow-blobs i:nth-child(4){width:65%;left:-20%;top:35%;background:#1a6cf0;opacity:.5;animation-duration:22s;animation-delay:-3s}
+.flow-blobs i:nth-child(5){width:40%;left:25%;top:-10%;background:#2bb6e0;opacity:.25;animation-duration:28s;animation-delay:-14s}
+@keyframes flow-float{0%{transform:translate(0,0) scale(1)}25%{transform:translate(26%,20%) scale(1.14)}50%{transform:translate(6%,42%) scale(.88)}75%{transform:translate(-24%,18%) scale(1.1)}100%{transform:translate(-8%,-6%) scale(.96)}}
+@media (prefers-reduced-motion:reduce){.flow-blobs i{animation:none}}
+.flow-grain{position:absolute;inset:0;opacity:.14;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27160%27 height=%27160%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%27.9%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E")}
 .dir-tag{--fs:14px;--lh:18px}
 .dir-body{display:flex;flex-direction:column;align-items:flex-start}
 .dir-card h3{--fs:clamp(32px,26.33px + 1.574vw,49px);--lh:clamp(34px,28.33px + 1.574vw,51px);font-weight:500;letter-spacing:-.015em}
@@ -167,10 +178,3 @@ html{-webkit-tap-highlight-color:transparent}
 .lang-dd-list a:active{color:var(--blue);background:var(--grey)}
 .ftr-links a:active{color:var(--blue)}
 @media (prefers-reduced-motion:reduce){.btn:active{transform:none}}
-/* карточки направлений — ссылка целиком: кнопка внутри откликается вместе с карточкой */
-.dir-card{transition:background-color .25s,transform .12s ease-out}
-@media (hover:hover){.dir-card:hover .btn-white{background:#e3e9ff}}
-.dir-card:active{transform:scale(.99)}
-.dir-card:active .btn-white{background:#cbd6ff;transform:scale(.97)}
-.dir-mgmt:active{background:#0228cc}
-@media (prefers-reduced-motion:reduce){.dir-card:active,.dir-card:active .btn-white{transform:none}}
