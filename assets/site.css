@@ -109,6 +109,39 @@ ul{list-style:none}
   .svc-guest .svc-pic img{width:auto;right:auto;left:24px;top:16px;height:240px}
 }
 
+/* о компании: стоит вплотную к услугам, поэтому снизу без своего отступа (ритм 120 один) */
+.about-sec{padding-bottom:0}
+.about-sec .h2{--mb:0}
+.about-lead{--fs:clamp(16px,15px + .278vw,19px);--lh:clamp(20px,18.67px + .37vw,24px);--mt:clamp(24px,21.33px + .741vw,32px);color:var(--ink-2);max-width:56em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.stat{display:flex;flex-direction:column;padding:40px;border-radius:24px;background:var(--grey)}
+.stat-n{--fs:clamp(56px,40px + 2.963vw,96px);--lh:calc(var(--fs)*.9);font-weight:500;letter-spacing:-.03em}
+.stat-l{--fs:16px;--lh:20px;--mt:24px;color:var(--ink-2)}
+@media (max-width:1023px){.stat{padding:32px}}
+@media (max-width:767px){.stats{grid-template-columns:1fr;gap:16px}}
+@media (max-width:599px){
+  .stats{margin-top:40px}
+  .stat{padding:32px 24px;border-radius:16px}
+  .stat-l{--mt:16px}
+}
+
+/* пресс-релиз unit.now */
+.news{display:grid;grid-template-columns:1fr 2fr;gap:24px;padding:56px;border-radius:24px;background:var(--grey)}
+.news-meta{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.news-tag{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:8px;background:var(--blue);color:var(--white);font-size:14px;font-weight:500;line-height:18px}
+.news-date{--fs:14px;--lh:18px;color:var(--ink-2)}
+.news-body{display:flex;flex-direction:column;align-items:flex-start}
+.news-t{--fs:clamp(28px,23.33px + 1.296vw,42px);--lh:clamp(31px,26px + 1.389vw,46px);font-weight:500;letter-spacing:-.015em;max-width:18em}
+.news-body p{--fs:16px;--lh:20px;--mt:24px;color:var(--ink-2);max-width:640px}
+.news .btn{margin-top:40px}
+@media (min-width:600px){.news-body p{--mt:32px}}
+@media (max-width:1023px){.news{grid-template-columns:1fr;gap:32px;padding:40px}}
+@media (max-width:599px){
+  .news{gap:24px;padding:32px 24px;border-radius:16px}
+  .news-meta{flex-direction:row;align-items:center}
+  .news .btn{margin-top:24px;width:100%}
+}
+
 /* направления */
 .dir-sec{background:var(--grey)}
 .dir{display:grid;gap:24px}

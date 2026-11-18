@@ -7,6 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { LANGS, NATIVE, LOCALE, T, glue } from './i18n.mjs';
 import { CAPS, GAL } from './caps.mjs';
+import { MORE, STATS } from './i18n-news.mjs';
 
 // выбор языка по куки: отдельным файлом, чтобы CSP обходилась без inline-скриптов
 const REDIR = `(function(){var L=/^(${LANGS.join('|')})$/;if(/bot|crawl|spider|slurp|lighthouse|headless|preview/i.test(navigator.userAgent))return;var w=(location.search.match(/[?&]lang=([a-z]{2})/)||[])[1];if(!w){var m=document.cookie.match(/(?:^|;\\s*)unit_lang=([a-z]{2})/);w=m&&m[1]}if(!w||w==='en'||!L.test(w))return;location.replace(location.pathname.replace(/[^/]*$/,'')+w+'/'+location.hash)})();`;
@@ -26,6 +27,7 @@ function page(l) {
   const d = Object.fromEntries(Object.entries(T[l]).map(([k, v]) => [k, glue(v, l)]));
   const R = l === 'en' ? '' : '../';
   const caps = CAPS[l].map(c => glue(c, l));
+  const m = Object.fromEntries(Object.entries(MORE[l]).map(([k, v]) => [k, Array.isArray(v) ? v.map(x => glue(x, l)) : glue(v, l)]));
   const langs = LANGS.map(x => `<li><a href="${R}${x === 'en' ? '' : x + '/'}" hreflang="${x}" lang="${x}"${x === l ? ' aria-current="true"' : ''}>${NATIVE[x]}</a></li>`).join('');
   const svc = [['ops', 's1', 900], ['rev', 's2', 760], ['mkt', 's3', 650], ['guest', 's4', 660]];
   const size = { ops: [920, 719, 600, 452], rev: [594, 760, 455, 444], mkt: [960, 650, 599, 364], guest: [959, 660, 698, 481] };
@@ -67,6 +69,7 @@ ${l === 'en' ? `<script src="assets/redir.js?v=${V}"></script>` : ''}
   <div class="container hdr-in">
     <a class="wordmark" href="#top">${BRAND}</a>
     <nav class="nav" aria-label="${attr(d.nav_label)}">
+      <a href="#about">${m.nav_about}</a>
       <a href="#services">${d.nav_services}</a>
       <a href="#directions">${d.nav_directions}</a>
     </nav>
@@ -95,6 +98,16 @@ ${['hero', 'hero2', 'hero3'].map((h, i) => `      <div class="hero-slide${i ? ''
     </div>
     <div class="hero-caps">${caps.map((c, i) => `<p class="hero-cap${i ? '' : ' on'}"${i ? ' aria-hidden="true"' : ''}>${c}</p>`).join('')}</div>
     <div class="hero-dots" role="group" aria-label="${attr(GAL[l])}"></div>
+  </section>
+
+  <section class="sec about-sec" id="about">
+    <div class="container">
+      <h2 class="t h2">${m.ab_h2}</h2>
+      <p class="t about-lead">${m.ab_p}</p>
+      <ul class="stats">
+${STATS.map((n, i) => `        <li class="stat"><b class="t stat-n">${n}</b><span class="t stat-l">${m.st[i]}</span></li>`).join('\n')}
+      </ul>
+    </div>
   </section>
 
   <section class="sec svc-sec" id="services">
@@ -136,6 +149,22 @@ ${svc.map(([k, s], i) => `        <article class="svc-card svc-${k} svc-${i + 1}
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="sec news-sec" id="news">
+    <div class="container">
+      <article class="news">
+        <div class="news-meta">
+          <span class="news-tag">${m.nw_tag}</span>
+          <span class="t news-date">${m.nw_meta}</span>
+        </div>
+        <div class="news-body">
+          <h2 class="t news-t">${m.nw_t}</h2>
+          <p class="t">${m.nw_p}</p>
+          <a class="btn btn-blue" href="https://unit.now">${m.nw_cta}</a>
+        </div>
+      </article>
     </div>
   </section>
 </main>
