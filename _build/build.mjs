@@ -91,7 +91,6 @@ ${['hero', 'hero2', 'hero3'].map((h, i) => `      <div class="hero-slide${i ? ''
       <p class="t hero-sub">${d.hero_sub}</p>
       <div class="btns">
         <a class="btn btn-blue" href="#directions">${d.hero_cta1}</a>
-        <a class="btn btn-ghost" href="https://unit.now">${d.hero_cta2}</a>
       </div>
     </div>
     <div class="hero-caps">${caps.map((c, i) => `<p class="hero-cap${i ? '' : ' on'}"${i ? ' aria-hidden="true"' : ''}>${c}</p>`).join('')}</div>
