@@ -37,7 +37,10 @@ ul{list-style:none}
 
 /* шапка как у UNIT.FURNITURE: прозрачная поверх первого экрана */
 .hdr{position:fixed;inset:0 0 auto;z-index:20;color:var(--ink);background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:background-color .3s,border-color .3s,color .3s}
-.hdr.is-over{color:var(--white);background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border-color:transparent}
+.hdr.is-over{color:var(--white);background:rgba(0,0,0,.34);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-color:rgba(255,255,255,.08)}
+.hdr.is-over.is-top{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border-color:transparent}
+/* в Telegram и Safari на iOS верх страницы виден сквозь их полупрозрачную плашку: продлеваем подложку шапки вверх */
+.hdr::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:240px;background:inherit;-webkit-backdrop-filter:inherit;backdrop-filter:inherit;pointer-events:none}
 .hdr-in{display:flex;align-items:center;height:64px}
 .wordmark{font-size:20px;line-height:24px;letter-spacing:-.02em;white-space:nowrap;margin-right:auto}
 .nav{display:flex;gap:32px;margin-right:24px;font-size:14px;font-weight:500;line-height:18px}

@@ -59,6 +59,7 @@
 (function () {
   var h = document.querySelector('.hdr'), hero = document.querySelector('.hero');
   if (!h || !hero) return;
-  function upd() { h.classList.toggle('is-over', hero.getBoundingClientRect().bottom > h.offsetHeight); }
+  // в самом верху прозрачная; листаем по первому экрану — тёмное стекло (заголовок не попадает под текст шапки); ниже — светлая
+  function upd() { h.classList.toggle('is-over', hero.getBoundingClientRect().bottom > h.offsetHeight); h.classList.toggle('is-top', scrollY < 4); }
   addEventListener('scroll', upd, { passive: true }); upd();
 })();
