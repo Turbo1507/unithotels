@@ -28,6 +28,8 @@ function page(l) {
   const R = l === 'en' ? '' : '../';
   const caps = CAPS[l].map(c => glue(c, l));
   const m = Object.fromEntries(Object.entries(MORE[l]).map(([k, v]) => [k, Array.isArray(v) ? v.map(x => glue(x, l)) : glue(v, l)]));
+  // «UNIT.» в конце абзаца не остаётся одно на строке
+  m.nw_p = m.nw_p.replace(/ (<i class="u5">UNIT\.<\/i>)$/, ' $1');
   const langs = LANGS.map(x => `<li><a href="${R}${x === 'en' ? '' : x + '/'}" hreflang="${x}" lang="${x}"${x === l ? ' aria-current="true"' : ''}>${NATIVE[x]}</a></li>`).join('');
   const svc = [['ops', 's1', 900], ['rev', 's2', 760], ['mkt', 's3', 650], ['guest', 's4', 660]];
   const size = { ops: [920, 719, 600, 452], rev: [594, 760, 455, 444], mkt: [960, 650, 599, 364], guest: [959, 660, 698, 481] };
@@ -116,8 +118,8 @@ ${STATS.map((n, i) => `        <li class="stat"><b class="t stat-n">${n}</b><spa
       <div class="svc">
 ${svc.map(([k, s], i) => `        <article class="svc-card svc-${k} svc-${i + 1}">
           <div class="svc-pic"><picture>
-            <source media="(max-width:599px)" srcset="${R}assets/img/svc-${k}-m.webp" width="${size[k][2]}" height="${size[k][3]}">
-            <img src="${R}assets/img/svc-${k}.webp" alt="" width="${size[k][0]}" height="${size[k][1]}" loading="lazy">
+            <source media="(max-width:599px)" srcset="${R}assets/img/svc-${k}-m.webp?v=${V}" width="${size[k][2]}" height="${size[k][3]}">
+            <img src="${R}assets/img/svc-${k}.webp?v=${V}" alt="" width="${size[k][0]}" height="${size[k][1]}" loading="lazy">
           </picture></div>
           <h3 class="t">${d[s + '_t']}</h3>
           <p class="t">${d[s + '_p']}</p>
@@ -131,7 +133,6 @@ ${svc.map(([k, s], i) => `        <article class="svc-card svc-${k} svc-${i + 1}
       <h2 class="t h2">${d.dir_h2}</h2>
       <div class="dir">
         <article class="dir-card dir-mgmt">
-          <div class="flow" aria-hidden="true"><span class="flow-blobs"><i></i><i></i><i></i><i></i><i></i></span><span class="flow-grain"></span></div>
           <span class="t dir-tag">${d.d1_tag}</span>
           <div class="dir-body">
             <h3 class="t">${d.d1_t}</h3>
@@ -154,17 +155,13 @@ ${svc.map(([k, s], i) => `        <article class="svc-card svc-${k} svc-${i + 1}
 
   <section class="sec news-sec" id="news">
     <div class="container">
-      <article class="news">
-        <div class="news-meta">
-          <span class="news-tag">${m.nw_tag}</span>
-          <span class="t news-date">${m.nw_meta}</span>
-        </div>
-        <div class="news-body">
-          <h2 class="t news-t">${m.nw_t}</h2>
-          <p class="t">${m.nw_p}</p>
-          <a class="btn btn-blue" href="https://unit.now">${m.nw_cta}</a>
-        </div>
-      </article>
+      <div class="news">
+        <div class="flow" aria-hidden="true"><span class="flow-blobs"><i></i><i></i><i></i><i></i><i></i></span><span class="flow-grain"></span></div>
+        <span class="news-tag">${m.nw_tag}</span>
+        <h2 class="t h2 news-t">${m.nw_t}</h2>
+        <p class="t news-p">${m.nw_p}</p>
+        <a class="btn btn-white" href="https://unit.now">${m.nw_cta}</a>
+      </div>
     </div>
   </section>
 </main>
