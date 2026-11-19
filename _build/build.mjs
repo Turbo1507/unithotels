@@ -79,7 +79,7 @@ ${l === 'en' ? `<script src="assets/redir.js?v=${V}"></script>` : ''}
       <button type="button" class="lang-dd-btn" aria-expanded="false" aria-controls="langList" aria-label="${attr(d.lang_label)}: ${NATIVE[l]}"><span>${l.toUpperCase()}</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
       <ul class="lang-dd-list" id="langList" hidden>${langs}</ul>
     </div>
-    <a class="btn btn-sm hdr-cta" href="#directions">${d.cta}</a>
+    <a class="btn btn-sm hdr-cta" href="https://wa.me/628133917731" target="_blank" rel="noopener noreferrer">${d.cta}</a>
   </div>
 </header>
 
@@ -95,7 +95,7 @@ ${['hero', 'hero2', 'hero3'].map((h, i) => `      <div class="hero-slide${i ? ''
       <h1 class="t">${BRAND}</h1>
       <p class="t hero-sub">${d.hero_sub}</p>
       <div class="btns">
-        <a class="btn btn-blue" href="#directions">${d.hero_cta1}</a>
+        <a class="btn btn-blue" href="https://wa.me/628133917731" target="_blank" rel="noopener noreferrer">${d.hero_cta1}</a>
       </div>
     </div>
     <div class="hero-caps">${caps.map((c, i) => `<p class="hero-cap${i ? '' : ' on'}"${i ? ' aria-hidden="true"' : ''}>${c}</p>`).join('')}</div>

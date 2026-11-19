@@ -78,6 +78,9 @@ ul{list-style:none}
 
 /* секции */
 .sec{padding-block:var(--sec)}
+/* по якорю заголовок секции встаёт под шапку с обычным отступом, а не через весь паддинг секции */
+.sec[id]{scroll-margin-top:calc(40px - var(--sec))}
+@media (max-width:599px){.sec[id]{scroll-margin-top:calc(24px - var(--sec))}}
 .h2{--fs:clamp(32px,25.33px + 1.852vw,52px);--lh:clamp(35px,28px + 1.944vw,56px);--mb:64px;font-weight:500;letter-spacing:-.015em}
 @media (max-width:599px){.h2{--mb:40px}}
 
