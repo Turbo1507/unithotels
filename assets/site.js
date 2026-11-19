@@ -63,3 +63,55 @@
   function upd() { h.classList.toggle('is-over', scrollY < 4); }
   addEventListener('scroll', upd, { passive: true }); upd();
 })();
+
+/* переход по якорю: блок, который влезает в экран, встаёт целиком, ближе к середине, но не выше своего фона;
+   высокий блок встаёт заголовком под шапку с отступом 40 (на телефоне 24) */
+(function () {
+  var hdr = document.querySelector('.hdr');
+  var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)');
+
+  function spot(el) {
+    var box = el.querySelector(':scope > .container') || el;
+    var top0 = hdr ? hdr.offsetHeight : 0;
+    var gap = innerWidth < 600 ? 24 : 40;
+    var r = box.getBoundingClientRect();
+    var free = innerHeight - top0;
+    // не выше своего фона: сверху не должен выглядывать соседний блок
+    var cs = getComputedStyle(el), room = r.top - el.getBoundingClientRect().top;
+    var prev = el.previousElementSibling;
+    if (parseFloat(cs.paddingTop) < gap && prev) room += parseFloat(getComputedStyle(prev).paddingBottom) || 0;
+    var y = scrollY + r.top - top0 - (r.height + gap * 2 <= free ? Math.max(gap, Math.min((free - r.height) / 2, room)) : gap);
+    return Math.max(0, Math.min(Math.round(y), document.documentElement.scrollHeight - innerHeight));
+  }
+  function target(hash) {
+    if (!hash || hash === '#' || hash === '#top') return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); } catch (e) { return null; }
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var hash = a.getAttribute('href'), el = target(hash);
+    if (!el && hash !== '#top' && hash !== '#') return;
+    e.preventDefault();
+    var top = el ? spot(el) : 0;
+    scrollTo({ top: top, behavior: calm && calm.matches ? 'auto' : 'smooth' });
+    if (history.pushState) history.pushState(null, '', el ? hash : location.pathname + location.search);
+    if (el) {
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
+    }
+  });
+
+  /* открыли ссылку с #якорем или вернулись «назад»: ставим блок так же, без анимации */
+  var touched = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+    addEventListener(ev, function () { touched = true; }, { once: true, passive: true });
+  });
+  function place() {
+    var el = target(location.hash);
+    if (el && !touched) scrollTo({ top: spot(el), behavior: 'auto' });
+  }
+  if (location.hash.length > 1) addEventListener('load', function () { place(); setTimeout(place, 500); });
+  addEventListener('popstate', function () { touched = false; place(); });
+})();

@@ -240,3 +240,4 @@ html{-webkit-tap-highlight-color:transparent}
 @media (max-width:1023px){.hero-caps{display:none}}
 @media (max-width:599px){.hero-dots{display:none}}
 @media (prefers-reduced-motion:reduce){.hero-slide,.hero-cap{transition:none}}
+.sec[tabindex="-1"]:focus{outline:none}
