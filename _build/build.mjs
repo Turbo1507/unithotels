@@ -7,7 +7,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { LANGS, NATIVE, LOCALE, T, glue } from './i18n.mjs';
 import { CAPS, GAL } from './caps.mjs';
-import { MORE, STATS } from './i18n-news.mjs';
+import { MORE } from './i18n-news.mjs';
+import { ABOUT, AB_N } from './i18n-about.mjs';
 
 // выбор языка по куки: отдельным файлом, чтобы CSP обходилась без inline-скриптов
 const REDIR = `(function(){var L=/^(${LANGS.join('|')})$/;if(/bot|crawl|spider|slurp|lighthouse|headless|preview/i.test(navigator.userAgent))return;var w=(location.search.match(/[?&]lang=([a-z]{2})/)||[])[1];if(!w){var m=document.cookie.match(/(?:^|;\\s*)unit_lang=([a-z]{2})/);w=m&&m[1]}if(!w||w==='en'||!L.test(w))return;location.replace(location.pathname.replace(/[^/]*$/,'')+w+'/'+location.hash)})();`;
@@ -27,7 +28,7 @@ function page(l) {
   const d = Object.fromEntries(Object.entries(T[l]).map(([k, v]) => [k, glue(v, l)]));
   const R = l === 'en' ? '' : '../';
   const caps = CAPS[l].map(c => glue(c, l));
-  const m = Object.fromEntries(Object.entries(MORE[l]).map(([k, v]) => [k, Array.isArray(v) ? v.map(x => glue(x, l)) : glue(v, l)]));
+  const m = Object.fromEntries(Object.entries({ ...MORE[l], ...ABOUT[l] }).map(([k, v]) => [k, Array.isArray(v) ? v.map(x => glue(x, l)) : glue(v, l)]));
   // «UNIT.» в конце абзаца не остаётся одно на строке
   m.nw_p = m.nw_p.replace(/ (<i class="u5">UNIT\.<\/i>)$/, ' $1');
   const langs = LANGS.map(x => `<li><a href="${R}${x === 'en' ? '' : x + '/'}" hreflang="${x}" lang="${x}"${x === l ? ' aria-current="true"' : ''}>${NATIVE[x]}</a></li>`).join('');
@@ -106,8 +107,9 @@ ${['hero', 'hero2', 'hero3'].map((h, i) => `      <div class="hero-slide${i ? ''
     <div class="container">
       <h2 class="t h2">${m.ab_h2}</h2>
       <p class="t about-lead">${m.ab_p}</p>
-      <ul class="stats">
-${STATS.map((n, i) => `        <li class="stat"><b class="t stat-n">${n}</b><span class="t stat-l">${m.st[i]}</span></li>`).join('\n')}
+      <ul class="abento">
+${AB_N.map((n, i) => `        <li class="ab-card ab-${i + 1}"><b class="t ab-n">${n}</b><span class="t ab-l">${m.ab_n[i]}</span></li>`).join('\n')}
+        <li class="ab-card ab-4"><h3 class="t ab-t">${m.ab_t}</h3><p class="t ab-l">${m.ab_c}</p></li>
       </ul>
     </div>
   </section>

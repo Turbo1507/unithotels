@@ -21,6 +21,7 @@ img{display:block;max-width:100%}
 i,em{font-style:normal}
 ul{list-style:none}
 .u5{font-weight:500}
+.u4{font-weight:400}
 .container{width:var(--container);margin-inline:auto}
 
 /* текст обрезан по заглавным и по базовой линии, как в Figma: отступы между блоками считаются от букв */
@@ -116,30 +117,39 @@ ul{list-style:none}
 
 /* о компании: стоит вплотную к услугам, поэтому снизу без своего отступа (ритм 120 один) */
 .about-sec{padding-bottom:0}
-.about-sec .h2{--mb:0}
+.about-sec .h2{--mb:0px}
+@media (max-width:374px){.about-sec .h2{--fs:28px;--lh:31px}}
 .about-lead{--fs:clamp(16px,15px + .278vw,19px);--lh:clamp(20px,18.67px + .37vw,24px);--mt:clamp(24px,21.33px + .741vw,32px);color:var(--ink-2);max-width:56em}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
-.stat{display:flex;flex-direction:column;padding:40px;border-radius:24px;background:var(--grey)}
-.stat-n{--fs:clamp(56px,40px + 2.963vw,96px);--lh:calc(var(--fs)*.9);font-weight:500;letter-spacing:-.03em;color:var(--blue)}
-.stat-l{--fs:16px;--lh:20px;--mt:24px;color:var(--ink-2)}
-@media (max-width:1023px){.stat{padding:32px}}
-@media (max-width:767px){.stats{grid-template-columns:1fr;gap:16px}}
+.abento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:64px}
+.ab-card{display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:280px;padding:40px;border-radius:24px;background:var(--grey)}
+.ab-1,.ab-4{grid-column:span 7}
+.ab-2,.ab-3{grid-column:span 5}
+.ab-1{background:var(--blue);color:var(--white)}
+.ab-n{--fs:clamp(56px,40px + 2.963vw,96px);--lh:calc(var(--fs)*.9);font-weight:500;letter-spacing:-.03em;color:var(--blue)}
+.ab-t{--fs:clamp(28px,24px + 1.111vw,40px);--lh:calc(var(--fs)*1.05);font-weight:500;letter-spacing:-.02em}
+.ab-l{--fs:clamp(16px,15.33px + .185vw,18px);--lh:clamp(20px,19px + .278vw,23px);color:var(--ink-2);max-width:26em}
+.ab-1 .ab-n{color:var(--white)}
+.ab-1 .ab-l{color:rgba(255,255,255,.86)}
+@media (max-width:1023px){
+  .ab-card{min-height:240px;padding:32px}
+  .ab-1,.ab-2,.ab-3,.ab-4{grid-column:span 6}
+}
 @media (max-width:599px){
-  .stats{margin-top:40px}
-  .stat{padding:32px 24px;border-radius:16px}
-  .stat-l{--mt:16px}
+  .abento{grid-template-columns:1fr;gap:8px;margin-top:40px}
+  .ab-1,.ab-2,.ab-3,.ab-4{grid-column:auto}
+  .ab-card{min-height:0;padding:24px;border-radius:16px;gap:16px}
 }
 
 /* пресс-релиз unit.now: синяя карточка с зернистым градиентом по центру, как подписка nuanu.city; стоит на фоне «Направлений» */
 .news-sec{background:var(--grey);padding-top:0}
 .news{position:relative;isolation:isolate;overflow:clip;display:flex;flex-direction:column;align-items:center;text-align:center;padding:80px clamp(24px,5.33px + 5.185vw,80px);border-radius:24px;background:var(--blue);color:var(--white)}
 .news-tag{display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:10px;background:rgba(255,255,255,.14);font-size:14px;font-weight:500;line-height:14px;white-space:nowrap}
-.news-t{--mt:24px;--mb:0;max-width:760px}
+.news .news-t{--mt:24px;--mb:0px;max-width:760px}
 .news-p{--fs:clamp(16px,15.33px + .185vw,18px);--lh:clamp(20px,19px + .278vw,23px);--mt:32px;max-width:640px}
 .news .btn{margin-top:40px}
 .news :focus-visible{outline-color:var(--white)}
 @media (max-width:599px){
-  .news{padding:40px 24px;border-radius:16px}
+  .news{padding:32px 24px;border-radius:16px}
   .news-p{--mt:24px}
   .news .btn{margin-top:24px;width:100%}
 }
